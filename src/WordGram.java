@@ -1,9 +1,10 @@
+import java.util.Arrays;
 
 /**
  * A WordGram represents a sequence of strings
  * just as a String represents a sequence of characters
  * 
- * @author YOUR NAME HERE
+ * @author Rhys Banerjee
  *
  */
 public class WordGram {
@@ -21,6 +22,9 @@ public class WordGram {
 	 */
 	public WordGram(String[] source, int start, int size) {
 		myWords = new String[size];
+		for(int i=0;i<size;i++){
+			myWords[i] = source[start+i];
+		}
 		myToString = null;
 		myHash = 0;
 
@@ -44,8 +48,7 @@ public class WordGram {
 	 * @return
 	 */
 	public int length(){
-		// TODO: change this
-		return 0;
+		return myWords.length;
 	}
 
 
@@ -60,6 +63,10 @@ public class WordGram {
 			return false;
 		}
 		// TODO: Complete this method
+		WordGram wg = (WordGram) o;
+		if(!Arrays.equals(myWords,wg.myWords)){
+			return false;
+		}
 
 		return true;
 	}
@@ -67,6 +74,9 @@ public class WordGram {
 	@Override
 	public int hashCode(){
 		// TODO: complete this method: assign to myHash as needed
+		if(myHash == 0){
+			myHash = this.toString().hashCode();
+		}
 		return myHash;
 	}
 	
@@ -79,13 +89,19 @@ public class WordGram {
 	public WordGram shiftAdd(String last) {
 		WordGram wg = new WordGram(myWords,0,myWords.length);
 		// TODO: Complete this method
-
+		for(int i =1;i<myWords.length;i++){
+			wg.myWords[i-1]=this.myWords[i];
+		}
+		wg.myWords[wg.length() - 1] = last;
 		return wg;
 	}
 
 	@Override
 	public String toString(){
 		// TODO: Complete this method, assign to myToString as needed
+		if(myToString == null){
+			myToString = String.join(" ",myWords);
+		}
 		return myToString;
 	}
 }
