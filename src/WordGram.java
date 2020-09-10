@@ -45,17 +45,18 @@ public class WordGram {
 
 	/**
 	 * Complete this comment
-	 * @return
+	 * @return length of myWords
 	 */
 	public int length(){
+		//returns length of myWords
 		return myWords.length;
 	}
 
 
 	/**
 	 * Complete appropriate comment here
-	 * @param o
-	 * @return
+	 * @param o = object placeholder for a WordGram parameter.
+	 * @return whether each element in both lists are equal.
 	 */
 	@Override
 	public boolean equals(Object o) {
@@ -64,16 +65,12 @@ public class WordGram {
 		}
 		// TODO: Complete this method
 		WordGram wg = (WordGram) o;
-		if(!Arrays.equals(myWords,wg.myWords)){
-			return false;
-		}
-
-		return true;
+		return Arrays.equals(myWords, wg.myWords);
 	}
 
 	@Override
 	public int hashCode(){
-		// TODO: complete this method: assign to myHash as needed
+		// If hasn't been assigned, make a new hashcode.
 		if(myHash == 0){
 			myHash = this.toString().hashCode();
 		}
@@ -84,7 +81,7 @@ public class WordGram {
 	/**
 	 * Create and complete this comment
 	 * @param last is last String of returned WordGram
-	 * @return
+	 * @return elements of list of the same size with new word added at the very end.
 	 */
 	public WordGram shiftAdd(String last) {
 		WordGram wg = new WordGram(myWords,0,myWords.length);
